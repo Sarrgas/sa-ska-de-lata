@@ -11,8 +11,6 @@ namespace SaSkaDetLata.Hubs
     public class ComsHub : Hub
     {
         private readonly ISessionHandler _session;
-        // TODO Poänghantering
-        // TODO Vid rätt låt - öppna alla rutor
 
         public ComsHub(ISessionHandler session)
         {
