@@ -7,11 +7,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace SaSkaDetLata.Pages
 {
-    public class IndexModel : PageModel
+    public class PrivacyModel : PageModel
     {
         public void OnGet()
         {
-
         }
     }
 }
