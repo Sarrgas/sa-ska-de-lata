@@ -11,19 +11,7 @@ namespace SaSkaDetLata.Utils
 {
     public class DatabaseClient : IDbProvider
     {
-        private IEnumerable<Song> AllSongs { get; set; }
-
-        public IEnumerable<Song> GetAllSongs()
-        {
-            if (AllSongs == null)
-            {
-                AllSongs =  ReadFromDatabase();
-            }
-
-            return AllSongs;
-        }
-
-        private IEnumerable<Song> ReadFromDatabase()
+        public IEnumerable<Song> ReadFromDatabase()
         {
             IFirebaseConfig config = new FirebaseConfig()
             {

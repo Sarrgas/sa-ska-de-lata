@@ -8,6 +8,6 @@ namespace SaSkaDetLata.Utils
 {
     public interface IDbProvider
     {
-        IEnumerable<Song> GetAllSongs();
+        IEnumerable<Song> ReadFromDatabase();
     }
 }

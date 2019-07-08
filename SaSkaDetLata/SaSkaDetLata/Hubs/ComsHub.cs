@@ -27,13 +27,13 @@ namespace SaSkaDetLata.Hubs
         public async Task NextSong()
         {
             _session.NextSong();
-            await Clients.All.SendAsync("ResetNumbers");
+            await Clients.All.SendAsync("NextSong");
         }
 
         public async Task Reset()
         {
             _session.Reset();
-            await Clients.All.SendAsync("ResetNumbers");
+            await Clients.All.SendAsync("Reset");
         }
 
         public async Task GiveScore(string team, int increment){

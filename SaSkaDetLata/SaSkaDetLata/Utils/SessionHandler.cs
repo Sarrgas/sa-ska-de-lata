@@ -29,7 +29,7 @@ namespace SaSkaDetLata.Utils
 
         public Stack<Song> GetPlaylist()
         {
-            var allSongs = _databaseClient.GetAllSongs();
+            var allSongs = _databaseClient.ReadFromDatabase();
             return new Stack<Song>(allSongs.Randomize());
         }
 

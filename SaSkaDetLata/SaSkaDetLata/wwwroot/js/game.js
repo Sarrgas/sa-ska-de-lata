@@ -21,7 +21,12 @@ connection.on("OpenPanel", function (square) {
     }
 });
 
-connection.on("ResetNumbers", function () {
+connection.on("Reset", function () {
+    resetNumbers();
+    resetScore();
+});
+
+connection.on("NextSong", function () {
     resetNumbers();
 });
 
@@ -41,4 +46,12 @@ function resetNumbers() {
         element.classList.add("blue");
         element.textContent = index;
     }
+}
+
+function resetScore(){
+    var team1 = document.getElementById("team1");
+    var team2 = document.getElementById("team2");
+
+    team1.textContent = 0;
+    team2.textContent = 0;
 }
