@@ -1,2 +1,1 @@
-# sa-ska-de-lata
-Så Ska Det Låta - Sällskapsspel
+# Så Ska Det Låta - Sällskapsspel
