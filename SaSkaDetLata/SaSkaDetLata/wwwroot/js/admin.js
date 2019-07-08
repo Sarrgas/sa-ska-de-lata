@@ -33,3 +33,17 @@ document.getElementById("reset").addEventListener("click", function (event) {
     });
     event.preventDefault();
 });
+
+document.getElementById("givescoreteam1").addEventListener("click", function (event) {
+    connection.invoke("GiveScore", "team1", 1).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("givescoreteam2").addEventListener("click", function (event) {
+    connection.invoke("GiveScore", "team2", 1).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});

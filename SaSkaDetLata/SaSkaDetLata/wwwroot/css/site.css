@@ -85,3 +85,29 @@ body {
     padding-top: 15px;
     font-size: 70px;
 }
+
+.score {
+    position: absolute;
+    display: block;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 5px;
+    color: white;
+    width: 150px;
+    height: 150px;
+    text-align: center;
+    font-size: 100px;
+    margin: 10px;
+    background-color: #889eff;
+}
+
+#team1 {
+  left: 0px;
+  top: 500px;
+}
+
+#team2 {
+  right: 0px;
+  top: 500px;
+}

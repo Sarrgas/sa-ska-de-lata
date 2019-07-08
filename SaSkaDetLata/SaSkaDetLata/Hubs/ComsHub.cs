@@ -35,5 +35,9 @@ namespace SaSkaDetLata.Hubs
             _session.Reset();
             await Clients.All.SendAsync("ResetNumbers");
         }
+
+        public async Task GiveScore(string team, int increment){
+            await Clients.All.SendAsync("GiveScore", team, increment);
+        }
     }
 }

@@ -25,6 +25,13 @@ connection.on("ResetNumbers", function () {
     resetNumbers();
 });
 
+connection.on("GiveScore", function(team, increment) {
+    var element = document.getElementById(team);
+    var currentScore = parseInt(element.textContent);
+    var newScore = currentScore + parseInt(increment);
+    element.textContent = newScore;
+});
+
 function resetNumbers() {
     for (let index = 1; index < 7; index++) {
         const element = document.getElementById(index);
