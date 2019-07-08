@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SaSkaDetLata.Controllers
 {
-    public class SubmitController : Controller
+    [Route("onsubmit")]
+    [ApiController]
+    public class SubmitController : ControllerBase
     {
-        public IActionResult Index()
+        public IActionResult Submit([FromBody] object formData)
         {
-            return View();
+
+            return null;
         }
     }
 }
