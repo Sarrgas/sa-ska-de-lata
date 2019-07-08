@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FireSharp.Config;
+using FireSharp.Interfaces;
+using FireSharp.Response;
 
 namespace SaSkaDetLata.Utils
 {
@@ -14,7 +17,7 @@ namespace SaSkaDetLata.Utils
         {
             if (AllSongs == null)
             {
-                AllSongs = ReadFromDatabase();
+                AllSongs =  ReadFromDatabase();
             }
 
             return AllSongs;
@@ -22,206 +25,25 @@ namespace SaSkaDetLata.Utils
 
         private IEnumerable<Song> ReadFromDatabase()
         {
-            IEnumerable<Song> songs = GetSongs();
+            IFirebaseConfig config = new FirebaseConfig()
+            {
+                AuthSecret = "JPVcYaQsp7Sc4cESsiki1Q7V8MDkHDEVsiw3VMND",
+                BasePath = "https://sa-ska-det-lata.firebaseio.com/",
+            };
+
+            IFirebaseClient client = new FireSharp.FirebaseClient(config);
+            FirebaseResponse response = client.Get("/Songs");
+
+            FirebaseConverter firebaseConverter = new FirebaseConverter();
+            var songs = firebaseConverter.ToSongList(response);
             return songs;
         }
 
-        private IEnumerable<Song> GetSongs()
+        private void SaveToDatabase()
         {
-            List<Song> songs = new List<Song>
-            {
-                GenerateDummySong1(),
-                GenerateDummySong2(),
-                GenerateDummySong3()
-            };
-            return songs;
+            // Detta sparar ny låt i databasen.
+            // PushResponse response = client.Push("/Songs", songs.ToList()[2]);
         }
 
-        private Song GenerateDummySong1() //PLACEHOLDER
-        {
-            Panel panel1 = new Panel()
-            {
-                Number = 1,
-                Red = true,
-                Word = "Avundsjuk"
-            };
-
-            Panel panel2 = new Panel()
-            {
-                Number = 2,
-                Red = false,
-                Word = "jag"
-            };
-
-            Panel panel3 = new Panel()
-            {
-                Number = 3,
-                Red = false,
-                Word = "är"
-            };
-
-            Panel panel4 = new Panel()
-            {
-                Number = 4,
-                Red = false,
-                Word = "så"
-            };
-
-            Panel panel5 = new Panel()
-            {
-                Number = 5,
-                Red = true,
-                Word = "avundsjuk"
-            };
-
-            Panel panel6 = new Panel()
-            {
-                Number = 6,
-                Red = false,
-                Word = "jä jävlar"
-            };
-
-            Song song = new Song()
-            {
-                ArtistName = "Nanne Grönwall",
-                SongName = "Avundsjuk",
-                Lyrics = "För jag är avundsjuk, jag är så avundsjuk Det finns så mycket jag behöver: Karlar och en massa klöver Avundsjuk, jag är så avundsjuk",
-                Panels = new List<Panel>() {
-                    panel1,
-                    panel2,
-                    panel3,
-                    panel4,
-                    panel5,
-                    panel6
-                }
-            };
-
-            return song;
-        }
-
-        private Song GenerateDummySong2() //PLACEHOLDER
-        {
-            Panel panel1 = new Panel()
-            {
-                Number = 1,
-                Red = false,
-                Word = "Jag"
-            };
-
-            Panel panel2 = new Panel()
-            {
-                Number = 2,
-                Red = false,
-                Word = "är"
-            };
-
-            Panel panel3 = new Panel()
-            {
-                Number = 3,
-                Red = false,
-                Word = "en"
-            };
-
-            Panel panel4 = new Panel()
-            {
-                Number = 4,
-                Red = true,
-                Word = "jävel"
-            };
-
-            Panel panel5 = new Panel()
-            {
-                Number = 5,
-                Red = false,
-                Word = "på"
-            };
-
-            Panel panel6 = new Panel()
-            {
-                Number = 6,
-                Red = true,
-                Word = "kärlek"
-            };
-
-            Song song = new Song()
-            {
-                ArtistName = "Glennmark Eriksson Strömstedt",
-                SongName = "Jävel Gå Kärlek",
-                Lyrics = "Jag är en jävel på kärlek, jag är jävel på att kyssa flickorna. Jag är en jävel på kärlek, och det finns ingen som kan slå mig på fingrarna där.",
-                Panels = new List<Panel>() {
-                    panel1,
-                    panel2,
-                    panel3,
-                    panel4,
-                    panel5,
-                    panel6
-                }
-            };
-
-            return song;
-        }
-
-
-        private Song GenerateDummySong3() //PLACEHOLDER
-        {
-            Panel panel1 = new Panel()
-            {
-                Number = 1,
-                Red = false,
-                Word = "Och"
-            };
-
-            Panel panel2 = new Panel()
-            {
-                Number = 2,
-                Red = true,
-                Word = "slåss"
-            };
-
-            Panel panel3 = new Panel()
-            {
-                Number = 3,
-                Red = false,
-                Word = "för"
-            };
-
-            Panel panel4 = new Panel()
-            {
-                Number = 4,
-                Red = false,
-                Word = "den"
-            };
-
-            Panel panel5 = new Panel()
-            {
-                Number = 5,
-                Red = true,
-                Word = "jag"
-            };
-
-            Panel panel6 = new Panel()
-            {
-                Number = 6,
-                Red = false,
-                Word = "är"
-            };
-
-            Song song = new Song()
-            {
-                ArtistName = "Glennmark Eriksson Strömstedt",
-                SongName = "Jävel Gå Kärlek",
-                Lyrics = "Jag är en jävel på kärlek, jag är jävel på att kyssa flickorna. Jag är en jävel på kärlek, och det finns ingen som kan slå mig på fingrarna där.",
-                Panels = new List<Panel>() {
-                    panel1,
-                    panel2,
-                    panel3,
-                    panel4,
-                    panel5,
-                    panel6
-                }
-            };
-
-            return song;
-        }
     }
 }
