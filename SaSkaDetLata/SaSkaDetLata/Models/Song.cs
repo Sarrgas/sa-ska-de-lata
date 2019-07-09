@@ -12,7 +12,7 @@ namespace SaSkaDetLata.Models
         public string SongName { get; set; }
         public string Lyrics { get; set; }
 
-        public Song()
+        public void Populate()
         {
             Panels = new List<Panel>();
             for (int i = 0; i < 6; i++)

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SaSkaDetLata.Models;
+using SaSkaDetLata.Utils;
 
 namespace SaSkaDetLata.Pages
 {
@@ -12,14 +13,21 @@ namespace SaSkaDetLata.Pages
     {
         [BindProperty]
         public Song NewSong { get; set; }
+        IDbProvider _dbProvider;
+
+        public NewSongModel(IDbProvider dbProvider)
+        {
+            _dbProvider = dbProvider;
+        }
         public void OnGet()
         {
             NewSong = new Song();
+            NewSong.Populate();
         }
 
         public void OnPost()
         {
-            // All data finns i NewSong variabeln!
+            _dbProvider.SaveToDatabase(NewSong);
         }
 
     }

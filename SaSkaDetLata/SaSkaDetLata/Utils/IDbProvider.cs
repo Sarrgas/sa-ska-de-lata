@@ -9,5 +9,6 @@ namespace SaSkaDetLata.Utils
     public interface IDbProvider
     {
         IEnumerable<Song> ReadFromDatabase();
+        void SaveToDatabase(Song song);
     }
 }

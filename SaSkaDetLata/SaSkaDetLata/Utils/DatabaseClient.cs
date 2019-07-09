@@ -11,7 +11,9 @@ namespace SaSkaDetLata.Utils
 {
     public class DatabaseClient : IDbProvider
     {
-        public IEnumerable<Song> ReadFromDatabase()
+        private readonly IFirebaseClient _client;
+        private readonly FirebaseConverter _firebaseConverter;
+        public DatabaseClient()
         {
             IFirebaseConfig config = new FirebaseConfig()
             {
@@ -19,18 +21,20 @@ namespace SaSkaDetLata.Utils
                 BasePath = "https://sa-ska-det-lata.firebaseio.com/",
             };
 
-            IFirebaseClient client = new FireSharp.FirebaseClient(config);
-            FirebaseResponse response = client.Get("/Songs");
-
-            FirebaseConverter firebaseConverter = new FirebaseConverter();
-            var songs = firebaseConverter.ToSongList(response);
+            _client = new FireSharp.FirebaseClient(config);
+            _firebaseConverter = new FirebaseConverter();
+        }
+        public IEnumerable<Song> ReadFromDatabase()
+        {
+            FirebaseResponse response = _client.Get("/Songs");
+            
+            var songs = _firebaseConverter.ToSongList(response);
             return songs;
         }
 
-        private void SaveToDatabase()
+        public void SaveToDatabase(Song song)
         {
-            // Detta sparar ny låt i databasen.
-            // PushResponse response = client.Push("/Songs", songs.ToList()[2]);
+            _client.Push("/Songs", song);
         }
 
     }
