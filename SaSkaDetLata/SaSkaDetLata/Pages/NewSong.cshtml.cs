@@ -25,9 +25,13 @@ namespace SaSkaDetLata.Pages
             NewSong.Populate();
         }
 
-        public void OnPost()
+        public RedirectToPageResult OnPost()
         {
-            _dbProvider.SaveToDatabase(NewSong);
+            // Tillfälligt bortkommenterad för att jobba på submit-features
+            // _dbProvider.SaveToDatabase(NewSong);
+            System.Threading.Thread.Sleep(1000);
+            ModelState.Clear();
+            return RedirectToPage("NewSong");
         }
 
     }
