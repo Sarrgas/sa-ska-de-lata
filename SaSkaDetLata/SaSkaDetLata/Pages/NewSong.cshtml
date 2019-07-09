@@ -14,8 +14,17 @@
 </head>
 <body>
     <h3>Ny låt - Så Ska Det Låta</h3>
+    <p>
+        Välkommen till mitt Så Ska Det Låta spel! Här kan du registrera egna låtar till spelet.<br />
+        I spelet visas låten som sex ord, gömda bakom sex sifferluckor. Två av dessa ord är röda. Om man väljer ett rött ord går spelarturen över till det andra laget.
+    </p>
     <form method="post">
         <div class="form-group">
+            <h4>Info om låten</h4>
+            <p>
+                För att veta om ett lag har lyckats gissa rätt låt, behöver vi ett facit om vad som <b>var</b> rätt låt. 
+                Denna info hjälper spelledaren att veta när ett lag ska få poäng.
+            </p>
             <label for="artist">Artist</label>
             <input type="text" class="form-control" placeholder="Artistens namn (ex. Carola eller Lars Winnerbäck)" asp-for="NewSong.ArtistName">
             <label for="songname">Låtnamn</label>
@@ -23,26 +32,31 @@
             <label for="lyrics">Text</label>
             <textarea rows="8" cols="50" class="form-control" placeholder="Del av låtens text. Helst samma del av låten som de numrerade luckorna nedan." asp-for="NewSong.Lyrics"></textarea>
         </div>
-        <h4>Luckor</h4>
-        <p>Välj 2st röda ord.</p>
-        @for (int i = 0; i < 6; i++)
-        {
-            int panelNumber = i + 1;
-            <div class="form-row">
-                <div class="form-group col-1">
-                    <input asp-for="NewSong.Panels[i].Number" type="text" readonly class="form-control-plaintext" value="@(panelNumber)" />
+        <div class="form-group">
+            <h4>Sifferluckor</h4>
+            <p>
+                Här skriver du självaste orden bakom sifferluckorna. Kom ihåg att <b>markera två ord som röda</b>. 
+                Välj gärna de ord som tydligast visar vilken låt det är.
+            </p>
+            @for (int i = 0; i < 6; i++)
+            {
+                int panelNumber = i + 1;
+                <div class="form-row">
+                    <div class="form-group col-1">
+                        <input asp-for="NewSong.Panels[i].Number" type="text" readonly class="form-control-plaintext" value="@(panelNumber)" />
+                    </div>
+                    <div class="form-group col-4">
+                        <input asp-for="NewSong.Panels[i].Word" type="text" class="form-control" placeholder="Ord" />
+                    </div>
+                    <div class="form-group col-2" style="margin-left: 40px;">
+                        <input asp-for="NewSong.Panels[i].Red" type="checkbox" class="custom-control-input" id="red@(i)" />
+                        <label class="custom-control-label" for="red@(i)">Rött ord</label>
+                    </div>
                 </div>
-                <div class="form-group col-4">
-                    <input asp-for="NewSong.Panels[i].Word" type="text" class="form-control" placeholder="Ord" />
-                </div>
-                <div class="form-group col-2" style="margin-left: 40px;">
-                    <input asp-for="NewSong.Panels[i].Red" type="checkbox" class="custom-control-input" id="red@(i)" />
-                    <label class="custom-control-label" for="red@(i)">Rött ord</label>
-                </div>
-            </div>
-        }
-        <button type="submit" id="submit" class="btn btn-primary">Registrera låt</button>
-    </form>
+            }
+        </div>
+            <button type="submit" id="submit" class="btn btn-primary">Registrera låt</button>
+</form>
     <script src="~/js/form.js"></script>
 </body>
 </html>
