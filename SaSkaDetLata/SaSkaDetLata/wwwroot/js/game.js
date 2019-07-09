@@ -30,6 +30,14 @@ connection.on("NextSong", function () {
     resetNumbers();
 });
 
+connection.on("OutOfSongs", function () {
+    Swal.fire({
+        title: 'Slut!',
+        text: 'Det var alla låtar! Spela gärna igen, eller registrera fler låtar.',
+        type: 'info',
+    });
+});
+
 connection.on("GiveScore", function(team, increment) {
     var element = document.getElementById(team);
     var currentScore = parseInt(element.textContent);

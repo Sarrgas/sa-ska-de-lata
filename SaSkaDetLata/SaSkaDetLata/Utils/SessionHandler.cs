@@ -24,7 +24,14 @@ namespace SaSkaDetLata.Utils
 
         public void NextSong()
         {
-            CurrentSong = Playlist.Pop();
+            if (Playlist.Count > 0)
+            {
+                CurrentSong = Playlist.Pop(); 
+            }
+            else
+            {
+                CurrentSong = null;
+            }
         }
 
         public Stack<Song> GetPlaylist()

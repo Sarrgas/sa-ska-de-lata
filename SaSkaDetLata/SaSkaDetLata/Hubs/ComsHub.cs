@@ -27,8 +27,15 @@ namespace SaSkaDetLata.Hubs
         public async Task NextSong()
         {
             _session.NextSong();
-            await Clients.All.SendAsync("CurrentSong", _session.CurrentSong);
-            await Clients.All.SendAsync("NextSong");
+            if (_session.CurrentSong != null)
+            {
+                await Clients.All.SendAsync("CurrentSong", _session.CurrentSong);
+                await Clients.All.SendAsync("NextSong");
+            }
+            else
+            {
+                await Clients.All.SendAsync("OutOfSongs");
+            }
         }
 
         public async Task Reset()
