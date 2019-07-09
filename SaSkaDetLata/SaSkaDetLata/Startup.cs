@@ -61,10 +61,7 @@ namespace SaSkaDetLata
             {
                 routes.MapHub<ComsHub>("/comsHub");
             });
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute("onsubmit", "{controller=Submit}/{action=Submit}");
-            });
+            app.UseMvc();
         }
     }
 }
