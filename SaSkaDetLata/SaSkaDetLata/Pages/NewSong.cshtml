@@ -1,5 +1,5 @@
 ﻿@page
-@model SaSkaDetLata.Pages.NewSongModel
+@model  SaSkaDetLata.Models.SongTEMP
 @{
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
@@ -9,98 +9,126 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>NewSong</title>
+    <title>Ny låt</title>
 </head>
 <body>
     <h3>Ny låt - Så Ska Det Låta</h3>
-    <form action="/onsubmit" method="post">
+    <form asp-action="Submit" asp-controller="Submit">
+        @*<label>Number</label>
+        <input type="text" class="form-control" placeholder="Number" asp-for="Number">
+
+        <label>Word</label>
+        <input type="text" class="form-control" placeholder="Word" asp-for="Word">
+
+        <label>Red</label>
+        <input type="checkbox" class="custom-control-input" placeholder="Artistens namn (ex. Carola eller Lars Winnerbäck)" asp-for="Red">*@
+
         <div class="form-group">
             <label for="artist">Artist</label>
-            <input type="text" class="form-control" name="artist" placeholder="Artistens namn (ex. Carola eller Lars Winnerbäck)">
+            <input type="text" class="form-control" placeholder="Artistens namn (ex. Carola eller Lars Winnerbäck)" asp-for="ArtistName">
             <label for="songname">Låtnamn</label>
-            <input type="text" class="form-control" name="songname" placeholder="Låtens namn (ex. Främling eller Kom Änglar)">
+            <input type="text" class="form-control" placeholder="Låtens namn (ex. Främling eller Kom Änglar)" asp-for="SongName">
             <label for="lyrics">Text</label>
-            <textarea rows="8" cols="50" class="form-control" name="lyrics" placeholder="Del av låtens text. Helst samma del av låten som de numrerade luckorna nedan."></textarea>
+            <textarea rows="8" cols="50" class="form-control" placeholder="Del av låtens text. Helst samma del av låten som de numrerade luckorna nedan." asp-for="Lyrics"></textarea>
         </div>
         <h4>Luckor</h4>
         <p>Välj 2st röda ord.</p>
-        <div class="form-row">
+        @{Model.Panels = new List<Models.Panel>();}
+        @for (int i = 0; i < 6; i++)
+        {
+            Model.Panels.Add(new Models.Panel());
+            int panelNumber = i + 1;
+            <div class="form-row">
+                <div class="form-group col-1">
+                    <input asp-for="Panels[i].Number" type="text" readonly class="form-control-plaintext" value="@(panelNumber)" />
+                </div>
+                <div class="form-group col-4">
+                    <input asp-for="Panels[i].Word" type="text" class="form-control" placeholder="Ord" />
+                </div>
+                <div class="form-group col-2" style="margin-left: 40px;">
+                    <input asp-for="Panels[i].Red" type="checkbox" class="custom-control-input" id="red@(i)" />
+                    <label class="custom-control-label" for="red@(i)">Rött ord</label>
+                </div>
+            </div>
+        }
+
+        @*<div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="1" name="word1number"/>
+                <input type="text" readonly class="form-control-plaintext" value="1" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word1" placeholder="Ord" />
+                <input type="text" class="form-control" placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word1red" id="word1red"/>
+                <input type="checkbox" class="custom-control-input" id="word1red"/>
                 <label class="custom-control-label" for="word1red">Rött ord</label>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="2" name="word2number"/>
+                <input type="text" readonly class="form-control-plaintext" value="2" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word2" placeholder="Ord" />
+                <input type="text" class="form-control" placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word2red" id="word2red"/>
+                <input type="checkbox" class="custom-control-input" id="word2red"/>
                 <label class="custom-control-label" for="word2red">Rött ord</label>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="3" name="word3number"/>
+                <input type="text" readonly class="form-control-plaintext" value="3" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word3" placeholder="Ord" />
+                <input type="text" class="form-control" placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word3red" id="word3red"/>
+                <input type="checkbox" class="custom-control-input" id="word3red"/>
                 <label class="custom-control-label" for="word3red">Rött ord</label>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="4" name="word4number"/>
+                <input type="text" readonly class="form-control-plaintext" value="4" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word4" placeholder="Ord" />
+                <input type="text" class="form-control"  placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word4red" id="word4red"/>
+                <input type="checkbox" class="custom-control-input" id="word4red"/>
                 <label class="custom-control-label" for="word4red">Rött ord</label>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="5" name="word5number"/>
+                <input type="text" readonly class="form-control-plaintext" value="5" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word5" placeholder="Ord" />
+                <input type="text" class="form-control" placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word5red" id="word5red"/>
+                <input type="checkbox" class="custom-control-input" id="word5red"/>
                 <label class="custom-control-label" for="word5red">Rött ord</label>
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-1">
-                <input type="text" readonly class="form-control-plaintext" value="6" name="word6number" />
+                <input type="text" readonly class="form-control-plaintext" value="6" />
             </div>
             <div class="form-group col-4">
-                <input type="text" class="form-control" name="word6" placeholder="Ord" />
+                <input type="text" class="form-control" placeholder="Ord" />
             </div>
             <div class="form-group col-2" style="margin-left: 40px;">
-                <input type="checkbox" class="custom-control-input" name="word6red" id="word6red"/>
+                <input type="checkbox" class="custom-control-input" id="word6red"/>
                 <label class="custom-control-label" for="word6red">Rött ord</label>
             </div>
-        </div>
+        </div>*@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </body>

@@ -12,4 +12,12 @@ namespace SaSkaDetLata.Models
         public string SongName { get; set; }
         public string Lyrics { get; set; }
     }
+
+    public class SongTEMP
+    {
+        public string ArtistName { get; set; }
+        public string SongName { get; set; }
+        public string Lyrics { get; set; }
+        public List<Panel> Panels { get; set; }
+    }
 }

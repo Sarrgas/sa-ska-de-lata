@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SaSkaDetLata.Models;
 
 namespace SaSkaDetLata.Controllers
 {
-    public class SubmitController : Controller
+    [Route("newsong")]
+    [ApiController]
+    public class SubmitController : ControllerBase
     {
-        public IActionResult Index()
+        [HttpPost("submit")]
+        public IActionResult Submit([FromForm]SongTEMP test)
         {
             return View();
         }
