@@ -13,7 +13,7 @@ namespace SaSkaDetLata.Pages
     {
         [BindProperty]
         public Song NewSong { get; set; }
-        IDbProvider _dbProvider;
+        private readonly IDbProvider _dbProvider;
 
         public NewSongModel(IDbProvider dbProvider)
         {
