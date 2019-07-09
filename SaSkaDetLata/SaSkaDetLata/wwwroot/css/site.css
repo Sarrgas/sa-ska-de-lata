@@ -102,9 +102,27 @@ body {
     background-color: #889eff;
 }
 
+.adminbtn
+{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.panelcontrolsrow {
+  width: 48%;
+  margin: 0 auto;
+}
+
+.panelcontrols{
+  border: 1px solid #000000;
+  border-radius: 5px;
+  padding: 5px;
+  text-align: center;
+}
+
 #team1 {
-  left: 0px;
-  top: 500px;
+    left: 0px;
+    top: 500px;
 }
 
 #team2 {
