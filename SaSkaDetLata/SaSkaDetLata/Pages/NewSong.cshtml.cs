@@ -10,16 +10,17 @@ namespace SaSkaDetLata.Pages
 {
     public class NewSongModel : PageModel
     {
+        [BindProperty]
         public Song NewSong { get; set; }
         public void OnGet()
         {
-
+            NewSong = new Song();
         }
 
-        [HttpPost]
-        public ActionResult Submit(NewSongModel model)
+        public void OnPost()
         {
-            return null;
+            // All data finns i NewSong variabeln!
         }
+
     }
 }
