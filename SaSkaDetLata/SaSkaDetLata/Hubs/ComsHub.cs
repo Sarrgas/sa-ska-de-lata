@@ -42,6 +42,7 @@ namespace SaSkaDetLata.Hubs
         {
             _session.Reset();
             await Clients.All.SendAsync("Reset");
+            await Clients.All.SendAsync("CurrentSong", _session.CurrentSong);
         }
 
         public async Task GiveScore(string team, int increment){
