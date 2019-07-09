@@ -31,6 +31,29 @@
     <div class="row">
         <input type="button" id="givescoreteam2" value="Team 2 +1" />
     </div>
+    <br />
+    <div>
+        <p>
+            <button class="btn btn-info" type="button" data-toggle="collapse" data-target="#songinfo">
+                Visa facit
+            </button>
+        </p>
+        <div class="collapse" id="songinfo">
+            <div class="card card-body">
+                <div class="row">
+                    <p>Artist: <span id="artistname"></span></p>
+                </div>
+                <div class="row">
+                    <p>Låt: <span id="songname"></span></p>
+                </div>
+                <div class="row">
+                    <p>Text: <span id="lyrics"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="~/lib/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/admin.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>

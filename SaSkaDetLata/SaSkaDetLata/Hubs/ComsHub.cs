@@ -27,6 +27,7 @@ namespace SaSkaDetLata.Hubs
         public async Task NextSong()
         {
             _session.NextSong();
+            await Clients.All.SendAsync("CurrentSong", _session.CurrentSong);
             await Clients.All.SendAsync("NextSong");
         }
 
@@ -38,6 +39,11 @@ namespace SaSkaDetLata.Hubs
 
         public async Task GiveScore(string team, int increment){
             await Clients.All.SendAsync("GiveScore", team, increment);
+        }
+
+        public async Task GetCurrentSong()
+        {
+            await Clients.All.SendAsync("CurrentSong", _session.CurrentSong);
         }
     }
 }

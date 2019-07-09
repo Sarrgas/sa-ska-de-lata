@@ -3,7 +3,7 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/comsHub").build();
 
 connection.start().then(function () {
-
+    connection.invoke("GetCurrentSong");
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -46,4 +46,15 @@ document.getElementById("givescoreteam2").addEventListener("click", function (ev
         return console.error(err.toString());
     });
     event.preventDefault();
+});
+
+connection.on("CurrentSong", function (song) {
+    var artistElement = document.getElementById("artistname");
+    artistElement.textContent = song.artistName;
+
+    var songElement = document.getElementById("songname");
+    songElement.textContent = song.songName;
+
+    var lyricsElement = document.getElementById("lyrics");
+    lyricsElement.textContent = song.lyrics;
 });
