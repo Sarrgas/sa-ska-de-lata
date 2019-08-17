@@ -5,8 +5,12 @@ Då jag tydligen ofta gör fel när jag ska deploya, så skriver jag ner instruk
 
 Öppna en terminal i rätt folder (den foldern med Dockerfile i) och kör följande kommandon:
 
-`dotnet publish`
-
-`heroku container:push web -a sa-ska-det-lata`
-
-`heroku release:push web -a sa-ska-det-lata`
+```
+dotnet publish
+```
+```
+heroku container:push web -a sa-ska-det-lata
+```
+```
+heroku release:push web -a sa-ska-det-lata
+```
