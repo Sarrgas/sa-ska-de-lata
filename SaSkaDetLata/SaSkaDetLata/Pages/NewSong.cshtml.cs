@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FireSharp.Config;
+using FireSharp.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SaSkaDetLata.Models;
@@ -27,10 +29,23 @@ namespace SaSkaDetLata.Pages
 
         public RedirectToPageResult OnPost()
         {
-            _dbProvider.SaveToDatabase(NewSong);
+            // _dbProvider.SaveToDatabase(NewSong);
+            SaveToDatabase(NewSong);
             System.Threading.Thread.Sleep(1000);
             ModelState.Clear();
             return RedirectToPage("NewSong");
+        }
+
+        private void SaveToDatabase(Song song) // FUL-LÖSNING!
+        {
+            IFirebaseConfig config = new FirebaseConfig()
+            {
+                AuthSecret = "JPVcYaQsp7Sc4cESsiki1Q7V8MDkHDEVsiw3VMND",
+                BasePath = "https://sa-ska-det-lata.firebaseio.com/",
+            };
+
+            IFirebaseClient _client = new FireSharp.FirebaseClient(config);
+            _client.Push("/Songs", song);
         }
 
     }
