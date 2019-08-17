@@ -9,6 +9,7 @@ namespace SaSkaDetLata.Utils
 {
     public class SessionHandler : ISessionHandler
     {
+        public int SongCount { get; set; }
         public Song CurrentSong { get; set; }
         public Stack<Song> Playlist { get; set; }
         public int Team1Score { get; set; }
@@ -37,6 +38,7 @@ namespace SaSkaDetLata.Utils
         public Stack<Song> GetPlaylist()
         {
             var allSongs = _databaseClient.ReadFromDatabase();
+            SongCount = allSongs.Count();
             return new Stack<Song>(allSongs.Randomize());
         }
 

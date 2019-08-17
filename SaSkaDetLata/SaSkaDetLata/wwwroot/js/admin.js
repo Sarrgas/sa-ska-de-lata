@@ -58,3 +58,8 @@ connection.on("CurrentSong", function (song) {
     var lyricsElement = document.getElementById("lyrics");
     lyricsElement.textContent = song.lyrics;
 });
+
+connection.on("SongCount", function (count) {
+    var countElement = document.getElementById("songcount");
+    countElement.textContent = count;
+});
