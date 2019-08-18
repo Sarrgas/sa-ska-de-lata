@@ -1,4 +1,5 @@
 # Så Ska Det Låta - Sällskapsspel
+Skriver detta som ett test att pusha commits från en "ny" klient (min andra dator).
 
 ## Utveckling
 För att utveckla och köra systemet lokalt behöver du ha Visual Studio installerat. Finns att installera här https://visualstudio.microsoft.com/vs/community/ . Därefter borde det bara vara att klona repot och köra.
