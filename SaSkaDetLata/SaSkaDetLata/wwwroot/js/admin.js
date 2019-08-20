@@ -24,6 +24,11 @@ document.getElementById("next").addEventListener("click", function (event) {
     connection.invoke("NextSong").catch(function (err) {
         return console.error(err.toString());
     });
+    const action = async () => {
+        const response = await fetch('/api/keepalive');
+        console.log(response);
+    }
+    action();
     event.preventDefault();
 });
 
