@@ -61,7 +61,7 @@ namespace SaSkaDetLata
             {
                 routes.MapHub<ComsHub>("/comsHub");
             });
-            app.UseMvc();
+            app.UseMvcWithDefaultRoute();
         }
     }
 }
