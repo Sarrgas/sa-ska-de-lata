@@ -28,14 +28,20 @@ Där den lyssnar efter meddelandet "NextSong", och återställer panelerna till 
 ## Deploy
 Då jag tydligen ofta gör fel när jag ska deploya, så skriver jag ner instruktioner här till mig själv. 
 
-Öppna en terminal i rätt folder (den foldern med Dockerfile i) och kör följande kommandon:
+Se till att Docker klienten är igång, och öppna en terminal i rätt folder (den foldern med Dockerfile i) och kör följande kommandon:
 
 ```
 dotnet publish
 ```
 ```
+heroku login
+```
+```
+heroku container:login
+```
+```
 heroku container:push web -a sa-ska-det-lata
 ```
 ```
-heroku release:push web -a sa-ska-det-lata
+heroku container:release web -a sa-ska-det-lata
 ```
