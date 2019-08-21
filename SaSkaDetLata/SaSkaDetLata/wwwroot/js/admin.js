@@ -26,7 +26,7 @@ document.getElementById("next").addEventListener("click", function (event) {
     });
     const action = async () => {
         const response = await fetch('/api/keepalive');
-        console.log(response);
+        console.log("Session extended.");
     }
     action();
     event.preventDefault();
