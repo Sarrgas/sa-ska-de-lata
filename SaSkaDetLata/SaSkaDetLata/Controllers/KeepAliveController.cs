@@ -14,7 +14,7 @@ namespace SaSkaDetLata.Controllers
         [HttpGet]
         public ActionResult<string> Get()
         {
-            return "Session extended";
+            return "Session extended.";
         }
     }
 }
