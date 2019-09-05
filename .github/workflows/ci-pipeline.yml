@@ -3,6 +3,7 @@ name: Build .NET
 on:
   push:
     paths:
+    - '*'
     - '!*.md'
 
 jobs:
