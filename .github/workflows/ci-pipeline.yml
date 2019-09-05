@@ -12,6 +12,7 @@ jobs:
     - name: Run a one-line script
       run: echo Hello, world!
     - name: Build .NET
+      run: cd ./SaSkaDetLata
       run: dotnet build
     - name: Run a multi-line script
       run: |
