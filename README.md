@@ -45,3 +45,5 @@ heroku container:push web -a sa-ska-det-lata
 ```
 heroku container:release web -a sa-ska-det-lata
 ```
+
+Dummy-ändring för att trigga CI action
