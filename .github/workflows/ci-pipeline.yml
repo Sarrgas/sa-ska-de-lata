@@ -1,9 +1,6 @@
 name: Build .NET
 
-on:
-  push:
-    paths:
-    - '*'
+on: push
 
 jobs:
   build:
