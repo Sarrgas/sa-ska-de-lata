@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace SaSkaDetLata.Extensions
 {
-    public static class EnumerableExtentions
+    public static class EnumerableExtensions
     {
         public static IEnumerable<T> Randomize<T>(this IEnumerable<T> source)
         {
@@ -15,8 +15,15 @@ namespace SaSkaDetLata.Extensions
 
         private static IEnumerable<T> Randomize<T>(this IEnumerable<T> source, Random range)
         {
-            if (source == null) throw new ArgumentNullException("source");
-            if (range == null) throw new ArgumentNullException("range");
+            if (source == null)
+            {
+                throw new ArgumentNullException("source");
+            }
+
+            if (range == null)
+            {
+                throw new ArgumentNullException("range");
+            }
 
             return source.RandomizeAlgorithm(range);
         }
