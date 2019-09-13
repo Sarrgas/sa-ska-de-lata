@@ -1,13 +1,10 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using SaSkaDetLata.Models;
-using SaSkaDetLata.Utils;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SaSkaDetLata.Hubs
+﻿namespace SaSkaDetLata.Hubs
 {
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.SignalR;
+    using SaSkaDetLata.Models;
+    using SaSkaDetLata.Utils;
+
     public class ComsHub : Hub
     {
         private readonly ISessionHandler _session;

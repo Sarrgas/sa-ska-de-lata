@@ -11,8 +11,12 @@
       "companyName": "PlaceholderCompany"
     },
     "indentation": {
-      "indentationSize": 3,
+      "indentationSize": 4,
       "useTabs": false
+    },
+    "layoutRules": {
+      "useBlankLinesBetweenUsingGroups": false
     }
+    
   }
 }

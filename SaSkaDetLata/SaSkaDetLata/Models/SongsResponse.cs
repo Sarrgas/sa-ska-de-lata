@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SaSkaDetLata.Models
+﻿namespace SaSkaDetLata.Models
 {
+    using System.Collections.Generic;
+
     public class SongsResponse
     {
         public Dictionary<string, Song> Songs { get; set; }
