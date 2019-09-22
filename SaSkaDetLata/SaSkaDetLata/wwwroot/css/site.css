@@ -1,4 +1,9 @@
-﻿.panel {
+﻿.content {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.panel {
     display: block;
     border-width: 1px;
     border-color: black;
@@ -48,15 +53,8 @@
     background-color: #889eff;
 }
 
-.adminbtn
-{
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-
-.panelcontrolsrow {
-  width: 48%;
-  margin: 0 auto;
+.adminbtn {
+    margin: 5px auto;
 }
 
 .panelcontrols{
@@ -64,6 +62,8 @@
   border-radius: 5px;
   padding: 5px;
   text-align: center;
+  width: 300px;
+  margin: 0 auto;
 }
 
 #team1 {
