@@ -13,10 +13,7 @@
     width: 800px;
     height: 130px;
     text-align: center;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
 }
 
 .blue {
