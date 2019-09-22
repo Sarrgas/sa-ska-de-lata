@@ -1,16 +1,15 @@
-﻿using SaSkaDetLata.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SaSkaDetLata.Utils
+﻿namespace SaSkaDetLata.Utils
 {
+    using SaSkaDetLata.Models;
+
     public interface ISessionHandler
     {
         int SongCount { get; set; }
+
         Song CurrentSong { get; set; }
+
         void NextSong();
+
         void Reset();
     }
 }

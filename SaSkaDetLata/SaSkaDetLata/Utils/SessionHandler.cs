@@ -1,24 +1,27 @@
-﻿using SaSkaDetLata.Extensions;
-using SaSkaDetLata.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SaSkaDetLata.Utils
+﻿namespace SaSkaDetLata.Utils
 {
+    using System.Collections.Generic;
+    using System.Linq;
+    using SaSkaDetLata.Extensions;
+    using SaSkaDetLata.Models;
+
     public class SessionHandler : ISessionHandler
     {
+        private readonly IDbProvider databaseClient;
         public int SongCount { get; set; }
+
         public Song CurrentSong { get; set; }
+
         public Stack<Song> Playlist { get; set; }
+
         public int Team1Score { get; set; }
+
         public int Team2Score { get; set; }
-        private readonly IDbProvider _databaseClient;
+
 
         public SessionHandler(IDbProvider databaseClient)
         {
-            this._databaseClient = databaseClient;
+            this.databaseClient = databaseClient;
             this.Playlist = this.GetPlaylist();
             this.CurrentSong = this.Playlist.Pop();
         }
@@ -37,7 +40,7 @@ namespace SaSkaDetLata.Utils
 
         public Stack<Song> GetPlaylist()
         {
-            var allSongs = this._databaseClient.ReadFromDatabase();
+            var allSongs = this.databaseClient.ReadFromDatabase();
             this.SongCount = allSongs.Count();
             return new Stack<Song>(allSongs.Randomize());
         }

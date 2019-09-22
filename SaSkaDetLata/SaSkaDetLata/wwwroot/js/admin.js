@@ -3,7 +3,7 @@
 var connection = new signalR.HubConnectionBuilder().withUrl("/comsHub").build();
 
 connection.start().then(function () {
-    connection.invoke("GetCurrentSong");
+    connection.invoke("Initialize");
 }).catch(function (err) {
     return console.error(err.toString());
 });

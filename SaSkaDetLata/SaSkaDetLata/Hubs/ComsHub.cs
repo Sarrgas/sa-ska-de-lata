@@ -21,6 +21,7 @@
             Panel panelInfo = this.session.CurrentSong.Panels[squareNumber];
             await this.Clients.All.SendAsync("OpenPanel", panelInfo);
         }
+
         public async Task NextSong()
         {
             this.session.NextSong();
@@ -47,9 +48,10 @@
             await this.Clients.All.SendAsync("GiveScore", team, increment);
         }
 
-        public async Task GetCurrentSong()
+        public async Task Initialize()
         {
             await this.Clients.All.SendAsync("CurrentSong", this.session.CurrentSong);
+            await this.Clients.All.SendAsync("SongCount", this.session.SongCount);
         }
     }
 }
