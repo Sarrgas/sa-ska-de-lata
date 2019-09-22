@@ -19,21 +19,21 @@ namespace SaSkaDetLata.Pages
 
         public NewSongModel(IDbProvider dbProvider)
         {
-            _dbProvider = dbProvider;
+            this._dbProvider = dbProvider;
         }
         public void OnGet()
         {
-            NewSong = new Song();
-            NewSong.Populate();
+            this.NewSong = new Song();
+            this.NewSong.Populate();
         }
 
         public RedirectToPageResult OnPost()
         {
             // _dbProvider.SaveToDatabase(NewSong);
-            SaveToDatabase(NewSong);
+            this.SaveToDatabase(this.NewSong);
             System.Threading.Thread.Sleep(1000);
-            ModelState.Clear();
-            return RedirectToPage("NewSong");
+            this.ModelState.Clear();
+            return this.RedirectToPage("NewSong");
         }
 
         private void SaveToDatabase(Song song) // FUL-LÖSNING!

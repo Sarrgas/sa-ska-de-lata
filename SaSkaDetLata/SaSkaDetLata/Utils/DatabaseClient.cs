@@ -21,20 +21,20 @@ namespace SaSkaDetLata.Utils
                 BasePath = "https://sa-ska-det-lata.firebaseio.com/",
             };
 
-            _client = new FireSharp.FirebaseClient(config);
-            _firebaseConverter = new FirebaseConverter();
+            this._client = new FireSharp.FirebaseClient(config);
+            this._firebaseConverter = new FirebaseConverter();
         }
         public IEnumerable<Song> ReadFromDatabase()
         {
-            FirebaseResponse response = _client.Get("/Songs");
+            FirebaseResponse response = this._client.Get("/Songs");
             
-            var songs = _firebaseConverter.ToSongList(response);
+            var songs = this._firebaseConverter.ToSongList(response);
             return songs;
         }
 
         public void SaveToDatabase(Song song)
         {
-            _client.Push("/Songs", song);
+            this._client.Push("/Songs", song);
         }
 
     }

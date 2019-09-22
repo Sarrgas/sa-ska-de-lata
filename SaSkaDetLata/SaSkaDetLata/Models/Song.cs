@@ -14,10 +14,10 @@ namespace SaSkaDetLata.Models
 
         public void Populate()
         {
-            Panels = new List<Panel>();
+            this.Panels = new List<Panel>();
             for (int i = 0; i < 6; i++)
             {
-                Panels.Add(new Panel());
+                this.Panels.Add(new Panel());
             }
         }
     }

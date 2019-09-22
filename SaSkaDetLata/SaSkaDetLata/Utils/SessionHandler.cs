@@ -18,34 +18,34 @@ namespace SaSkaDetLata.Utils
 
         public SessionHandler(IDbProvider databaseClient)
         {
-            _databaseClient = databaseClient;
-            Playlist = GetPlaylist();
-            CurrentSong = Playlist.Pop();
+            this._databaseClient = databaseClient;
+            this.Playlist = this.GetPlaylist();
+            this.CurrentSong = this.Playlist.Pop();
         }
 
         public void NextSong()
         {
-            if (Playlist.Count > 0)
+            if (this.Playlist.Count > 0)
             {
-                CurrentSong = Playlist.Pop(); 
+                this.CurrentSong = this.Playlist.Pop(); 
             }
             else
             {
-                CurrentSong = null;
+                this.CurrentSong = null;
             }
         }
 
         public Stack<Song> GetPlaylist()
         {
-            var allSongs = _databaseClient.ReadFromDatabase();
-            SongCount = allSongs.Count();
+            var allSongs = this._databaseClient.ReadFromDatabase();
+            this.SongCount = allSongs.Count();
             return new Stack<Song>(allSongs.Randomize());
         }
 
         public void Reset()
         {
-            Playlist = GetPlaylist();
-            CurrentSong = Playlist.Pop();
+            this.Playlist = this.GetPlaylist();
+            this.CurrentSong = this.Playlist.Pop();
         }
     }
 }
