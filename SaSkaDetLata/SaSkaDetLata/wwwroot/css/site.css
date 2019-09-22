@@ -5,11 +5,11 @@
     border-style: solid;
     border-radius: 5px;
     color: white;
-    width: 600px;
-    height: 90px;
+    width: 800px;
+    height: 130px;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -33,6 +33,7 @@
 
 .score {
     position: absolute;
+    top: 450px;
     display: block;
     border-width: 1px;
     border-color: black;
@@ -66,11 +67,9 @@
 }
 
 #team1 {
-    left: 0px;
-    top: 500px;
+  left: 0px;
 }
 
 #team2 {
   right: 0px;
-  top: 500px;
 }
