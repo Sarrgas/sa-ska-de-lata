@@ -1,5 +1,6 @@
 ﻿namespace SaSkaDetLata.Hubs
 {
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
     using SaSkaDetLata.Models;
@@ -52,6 +53,18 @@
         {
             await this.Clients.All.SendAsync("CurrentSong", this.session.CurrentSong);
             await this.Clients.All.SendAsync("SongCount", this.session.SongCount);
+        }
+
+        public async Task CheckAnswer(string input)
+        {
+            string regex = "[^a-z]";
+
+            string filteredInput = Regex.Replace(input.ToLower(), regex, string.Empty);
+            string filteredAnswer = Regex.Replace(this.session.CurrentSong.SongName.ToLower(), regex, string.Empty);
+
+            bool answerWasCorrect = filteredInput == filteredAnswer;
+
+            await this.Clients.All.SendAsync("Answer", answerWasCorrect);
         }
     }
 }

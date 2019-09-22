@@ -58,6 +58,14 @@ document.getElementById("givescoreteam2").addEventListener("click", function (ev
     event.preventDefault();
 });
 
+document.getElementById("myAnswerButton").addEventListener("click", function (event) {
+    const myAnswer = document.getElementById("myAnswerInput").value;
+    connection.invoke("CheckAnswer", myAnswer).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
 connection.on("CurrentSong", function (song) {
     var artistElement = document.getElementById("artistname");
     artistElement.textContent = song.artistName;
@@ -77,4 +85,16 @@ connection.on("SongCount", function (count) {
 connection.on("Reset", function () {
     const element = document.getElementById("songsplayed");
     element.textContent = 0;
+});
+
+connection.on("Answer", function (answerWasCorrect) {
+    const element = document.getElementById("myAnswerDiv");
+    if (answerWasCorrect) {
+        element.classList.remove("alert", "alert-danger");
+        element.classList.add("alert", "alert-success");
+    }
+    else {
+        element.classList.remove("alert", "alert-success");
+        element.classList.add("alert", "alert-danger");
+    }
 });
