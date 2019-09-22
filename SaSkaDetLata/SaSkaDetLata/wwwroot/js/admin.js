@@ -30,6 +30,11 @@ document.getElementById("next").addEventListener("click", function (event) {
     }
     action();
     event.preventDefault();
+
+    const element = document.getElementById("songsplayed");
+    let counter = parseInt(element.textContent);
+    counter++;
+    element.textContent = counter;
 });
 
 document.getElementById("reset").addEventListener("click", function (event) {
@@ -67,4 +72,9 @@ connection.on("CurrentSong", function (song) {
 connection.on("SongCount", function (count) {
     var countElement = document.getElementById("songcount");
     countElement.textContent = count;
+});
+
+connection.on("Reset", function () {
+    const element = document.getElementById("songsplayed");
+    element.textContent = 0;
 });
