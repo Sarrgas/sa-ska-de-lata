@@ -11,7 +11,7 @@ connection.start().then(function () {
 var controls = document.querySelectorAll(".control");
 for (let i = 0; i < controls.length; i++) {
     const element = controls[i];
-    element.addEventListener("click", function (event) {
+    element.addEventListener("click", function (event) 
         var data = event.currentTarget.getAttribute("data");
         connection.invoke("OpenPanel", data).catch(function (err) {
             return console.error(err.toString());
@@ -24,19 +24,11 @@ document.getElementById("next").addEventListener("click", function (event) {
     connection.invoke("NextSong").catch(function (err) {
         return console.error(err.toString());
     });
-    const action = async () => {
-        const response = await fetch('/api/keepalive');
-        console.log("Session extended.");
-    }
-    action();
+
+    extendSession();
     event.preventDefault();
-
     resetAnswerDiv();
-
-    const element = document.getElementById("songsplayed");
-    let counter = parseInt(element.textContent);
-    counter++;
-    element.textContent = counter;
+    incrementSongsPlayed();
 });
 
 document.getElementById("reset").addEventListener("click", function (event) {
@@ -124,4 +116,19 @@ function answerDivFailure() {
 
     const feedbackElement = document.getElementById("myAnswerFeedback");
     feedbackElement.textContent = "Fel!";
+}
+
+function extendSession() {
+    const action = async () => {
+        const response = await fetch('/api/keepalive');
+        console.log("Session extended.");
+    }
+    action();
+}
+
+function incrementSongsPlayed() {
+    const element = document.getElementById("songsplayed");
+    let counter = parseInt(element.textContent);
+    counter++;
+    element.textContent = counter;
 }
