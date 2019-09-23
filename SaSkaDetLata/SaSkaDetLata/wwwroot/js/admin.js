@@ -31,6 +31,8 @@ document.getElementById("next").addEventListener("click", function (event) {
     action();
     event.preventDefault();
 
+    resetAnswerDiv();
+
     const element = document.getElementById("songsplayed");
     let counter = parseInt(element.textContent);
     counter++;
@@ -88,13 +90,38 @@ connection.on("Reset", function () {
 });
 
 connection.on("Answer", function (answerWasCorrect) {
-    const element = document.getElementById("myAnswerDiv");
+    resetAnswerDiv();
     if (answerWasCorrect) {
-        element.classList.remove("alert", "alert-danger");
-        element.classList.add("alert", "alert-success");
+        answerDivSuccess();
     }
     else {
-        element.classList.remove("alert", "alert-success");
-        element.classList.add("alert", "alert-danger");
+        answerDivFailure();
     }
 });
+
+function resetAnswerDiv() {
+    const element = document.getElementById("myAnswerDiv");
+    element.classList.remove("alert", "alert-success", "alert-danger");
+
+    const feedbackElement = document.getElementById("myAnswerFeedback");
+    feedbackElement.textContent = "";
+
+    const myAnswerElement = document.getElementById("myAnswerInput");
+    myAnswerElement.value = "";
+}
+
+function answerDivSuccess() {
+    const element = document.getElementById("myAnswerDiv");
+    element.classList.add("alert", "alert-success");
+
+    const feedbackElement = document.getElementById("myAnswerFeedback");
+    feedbackElement.textContent = "Rätt!";
+}
+
+function answerDivFailure() {
+    const element = document.getElementById("myAnswerDiv");
+    element.classList.add("alert", "alert-danger");
+
+    const feedbackElement = document.getElementById("myAnswerFeedback");
+    feedbackElement.textContent = "Fel!";
+}
