@@ -11,7 +11,8 @@ connection.start().then(function () {
 var controls = document.querySelectorAll(".control");
 for (let i = 0; i < controls.length; i++) {
     const element = controls[i];
-    element.addEventListener("click", function (event) 
+    element.addEventListener("click", function (event) {
+        extendSession();
         var data = event.currentTarget.getAttribute("data");
         connection.invoke("OpenPanel", data).catch(function (err) {
             return console.error(err.toString());
